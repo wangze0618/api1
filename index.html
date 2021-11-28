@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input[type] {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="http://127.0.0.1:8080/api/" method="post">
+        <label for="name">name</label>
+        <input type="text" name="name" id="name" value=''>
+
+        <label for="password">password</label>
+        <input type="text" name="password" id="password" value=''>
+
+        <input type="submit" value="submit" id="submit">
+    </form>
+</body>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js"></script>
+<script>
+    // const name = document.querySelector('#name').value;
+    // const pwd = document.querySelector('#password').value;
+    // const btn = document.querySelector('button')
+    // const form = document.querySelector('form')
+
+    // const data = {
+    //     name: name,
+    //     password: password
+    // }
+    $(function () {
+        $('form').on('submit', function (e) {
+            e.preventDefault()
+            $data = $('form').serialize()
+            axios.post("http://127.0.0.1:8080/api/", JSON.stringify($data))
+                .then(res => {
+                    console.log(res.data)
+                })
+                .catch(err => {
+                    console.error(err);
+                })
+        })
+    })
+    // form.addEventListener("submit", function (e) {
+    //     e.preventDefault();
+
+    //     axios.post('http://127.0.0.1:8080/api/', data)
+    //         .then(res => {
+    //             console.log(res.data)
+    //         })
+    //         .catch(err => {
+    //             console.error(err);
+    //         })
+    // })
+
+</script>
+
+</html>
